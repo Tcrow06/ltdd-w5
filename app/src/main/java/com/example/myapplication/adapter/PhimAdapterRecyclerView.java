@@ -1,8 +1,12 @@
 package com.example.myapplication.adapter;
 
+import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,7 +25,12 @@ public class PhimAdapterRecyclerView extends RecyclerView.Adapter<RecyclerView.V
     private static final int ITEM_ACTOR = 1;
     private List<Object> objects;
 
-    public PhimAdapterRecyclerView(List<Object> objects) {
+    private Context context;
+
+    private int lastPosition = -1;
+
+    public PhimAdapterRecyclerView(Context context, List<Object> objects) {
+        this.context = context;
         this.objects = objects;
     }
     @Override
@@ -37,33 +46,63 @@ public class PhimAdapterRecyclerView extends RecyclerView.Adapter<RecyclerView.V
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if(viewType == ITEM_MOVIE){
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item_movie, parent, false);
+            View view = LayoutInflater.from(context).inflate(R.layout.row_item_movie, parent, false);
             return new MovieViewHolder(view);
         }
         else {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_actor, parent, false);
+            View view = LayoutInflater.from(context).inflate(R.layout.row_actor, parent, false);
             return new ActorViewHolder(view);
         }
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        if(holder instanceof MovieViewHolder){
-            Phim phim = (Phim)objects.get(position);
+        int viewType = getItemViewType(position);
+
+        Object object = objects.get(position);
+
+        if (viewType == ITEM_MOVIE) {
+            Phim phim = (Phim) object;
             ((MovieViewHolder) holder).tvCode.setText(phim.getCode());
             ((MovieViewHolder) holder).tvName.setText(phim.getName());
             ((MovieViewHolder) holder).tvGenre.setText(phim.getGenre());
             ((MovieViewHolder) holder).tvShortDescription.setText(phim.getShortDescription());
             ((MovieViewHolder) holder).tvPic.setImageResource(phim.getPic());
-        }else if (holder instanceof ActorViewHolder){
+        }else if (viewType == ITEM_ACTOR){
             ActorViewHolder actorHolder = (ActorViewHolder) holder;
-            DienVien dv = (DienVien) objects.get(position);
+            DienVien dv = (DienVien) object;
             actorHolder.tvName.setText(dv.getName());
             actorHolder.tvGender.setText(dv.getGender());
             actorHolder.tvBird.setText(dv.getBird());
             actorHolder.tvPic.setImageResource(dv.getPic());
         }
+        //Thiết lập animation cho item
+        setAnimation(holder.itemView, position);
 
+        //Thiết lập sự kiện animation khi click vào item
+        holder.itemView.setOnClickListener( a -> {
+            Animation rotateAnimation = AnimationUtils.loadAnimation(context, R.anim.rotate_y);
+            a.startAnimation(rotateAnimation);
+        });
+
+        holder.itemView.setOnLongClickListener(d -> {
+            if (position >= 0 && position < objects.size()) {
+                objects.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, objects.size());
+            }
+            return true;
+        });
+
+
+
+    }
+    private void setAnimation(View view, int position){
+        if(position > lastPosition){
+            Animation animation = AnimationUtils.loadAnimation(context, R.anim.item_animation_fade_slide);
+            view.startAnimation(animation);
+            lastPosition = position;
+        }
     }
 
     @Override
@@ -85,7 +124,11 @@ public class PhimAdapterRecyclerView extends RecyclerView.Adapter<RecyclerView.V
             tvName = itemView.findViewById(R.id.tv_name);
             tvGenre = itemView.findViewById(R.id.tv_genre);
             tvShortDescription = itemView.findViewById(R.id.tv_short_desc);
-            tvPic = itemView.findViewById(R.id.imagePic);
+
+            tvPic = itemView.findViewById(R.id.tv_pic);
+            if (tvPic == null) {
+                Log.e("MovieViewHolder", "tvPic is NULL!");
+            }
         }
     }
     public static class ActorViewHolder extends RecyclerView.ViewHolder {
@@ -98,9 +141,9 @@ public class PhimAdapterRecyclerView extends RecyclerView.Adapter<RecyclerView.V
         public ActorViewHolder(@NonNull View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tv_name);
-            tvGender = itemView.findViewById(R.id.tv_genre);
-            tvBird = itemView.findViewById(R.id.tv_short_desc);
-            tvPic = itemView.findViewById(R.id.imagePic);
+            tvGender = itemView.findViewById(R.id.tv_gender);
+            tvBird = itemView.findViewById(R.id.tv_bird);
+            tvPic = itemView.findViewById(R.id.tv_pic);
         }
     }
 }

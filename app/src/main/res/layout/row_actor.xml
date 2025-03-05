@@ -9,7 +9,7 @@
     android:elevation="4dp">
 
     <ImageView
-        android:id="@+id/img"
+        android:id="@+id/tv_pic"
         android:layout_width="82dp"
         android:layout_height="82dp"
         android:scaleType="centerCrop"

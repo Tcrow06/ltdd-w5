@@ -4,11 +4,11 @@ public class DienVien {
     private String name;
 
     private String gender;
-    private int bird;
+    private String bird;
 
     private int pic;
 
-    public DienVien(String name, String gender, int bird, int pic) {
+    public DienVien(String name, String gender, String bird, int pic) {
         this.name = name;
         this.gender = gender;
         this.bird = bird;
@@ -31,11 +31,11 @@ public class DienVien {
         this.gender = gender;
     }
 
-    public int getBird() {
+    public String getBird() {
         return bird;
     }
 
-    public void setBird(int bird) {
+    public void setBird(String bird) {
         this.bird = bird;
     }
 

@@ -9,7 +9,7 @@
     android:elevation="4dp">
 
     <ImageView
-        android:id="@+id/img"
+        android:id="@+id/tv_pic"
         android:layout_width="82dp"
         android:layout_height="82dp"
         android:scaleType="centerCrop"
@@ -55,10 +55,10 @@
             android:id="@+id/tv_short_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="6dp"
             android:text="Mô tả ngắn"
-            android:textSize="14sp"
             android:textColor="@android:color/darker_gray"
-            android:paddingBottom="6dp"/>
+            android:textSize="14sp" />
 
 
     </LinearLayout>
