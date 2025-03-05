@@ -4,63 +4,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <!-- Tiêu đề -->
     <TextView
         android:id="@+id/txtGridView"
-        android:layout_width="409dp"
-        android:layout_height="70dp"
+        android:layout_width="0dp"
+        android:layout_height="90dp"
         android:background="#067D17"
         android:textStyle="bold"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:gravity="center_vertical"
         android:text="ListView"
         android:textColor="@color/white"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Ô nhập tên môn học -->
     <EditText
         android:id="@+id/editTenMH"
-        android:layout_width="406dp"
+        android:layout_width="0dp"
         android:layout_height="65dp"
-        android:layout_marginTop="4dp"
-        android:textSize="17dp"
-        android:ems="10"
-        android:inputType="text"
+        android:layout_marginTop="8dp"
+        android:textSize="17sp"
         android:hint="Nhập tên môn học"
-        app:layout_constraintTop_toBottomOf="@+id/txtGridView"
-        tools:layout_editor_absoluteX="2dp"
-        tools:ignore="MissingConstraints" />
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/txtGridView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"/>
 
+    <!-- Button Thêm -->
     <Button
         android:id="@+id/btnThemMH"
-        android:layout_width="201dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="@color/green"
         android:text="Thêm"
-        app:layout_constraintEnd_toStartOf="@+id/btnCapNhatMH"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtGridView" />
+        app:layout_constraintEnd_toStartOf="@id/btnCapNhatMH"
+        app:layout_constraintTop_toBottomOf="@id/editTenMH"
+        app:layout_constraintHorizontal_weight="1"/>
 
+    <!-- Button Cập nhật -->
     <Button
         android:id="@+id/btnCapNhatMH"
-        android:layout_width="201dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="@color/green"
         android:text="Cập nhật"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtGridView" />
+        app:layout_constraintStart_toEndOf="@id/btnThemMH"
+        app:layout_constraintTop_toBottomOf="@id/editTenMH"
+        app:layout_constraintHorizontal_weight="1"/>
 
+    <!-- ListView -->
     <ListView
         android:id="@+id/listView"
-        android:layout_width="414dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="16dp"
+        android:scrollbars="vertical"
+        android:fadeScrollbars="false"
+        app:layout_constraintTop_toBottomOf="@id/btnThemMH"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTenMH"
-        app:layout_constraintVertical_bias="0.0"
-        android:scrollbars="vertical"/>
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

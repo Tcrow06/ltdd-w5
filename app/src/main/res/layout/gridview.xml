@@ -5,71 +5,75 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Thanh tiêu đề -->
     <TextView
         android:id="@+id/txtGridView"
-        android:layout_width="409dp"
+        android:layout_width="0dp"
         android:layout_height="70dp"
         android:background="#067D17"
         android:gravity="center_vertical"
         android:text="GridView"
         android:textColor="@color/white"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <GridView
-        android:id="@+id/gridView"
-        android:layout_width="414dp"
-        android:layout_height="546dp"
-        android:layout_marginTop="50dp"
-        android:numColumns="2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTenMH"
-        app:layout_constraintVertical_bias="0.0" />
-
+    <!-- Ô nhập tên môn học -->
     <EditText
         android:id="@+id/editTenMH"
-        android:layout_width="406dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:ems="10"
         android:hint="Nhập tên môn học"
         android:inputType="text"
-        android:textSize="17dp"
+        android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtGridView"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@id/txtGridView" />
+
+    <!-- Nhóm nút -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline50"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
     <Button
         android:id="@+id/btnThemMH"
-        android:layout_width="201dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginLeft="10dp"
+        android:layout_margin="8dp"
         android:backgroundTint="@color/green"
         android:text="Thêm"
-        app:layout_constraintEnd_toStartOf="@+id/btnCapNhatMH"
-        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintEnd_toStartOf="@id/guideline50"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtGridView" />
+        app:layout_constraintTop_toBottomOf="@id/editTenMH" />
 
     <Button
         android:id="@+id/btnCapNhatMH"
-        android:layout_width="201dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="64dp"
+        android:layout_margin="8dp"
         android:backgroundTint="@color/green"
         android:text="Cập nhật"
-        android:layout_marginRight="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtGridView" />
+        app:layout_constraintStart_toStartOf="@id/guideline50"
+        app:layout_constraintTop_toBottomOf="@id/editTenMH" />
 
+    <!-- GridView -->
+    <GridView
+        android:id="@+id/gridView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:numColumns="2"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnThemMH" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

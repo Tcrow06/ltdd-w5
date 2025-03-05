@@ -60,7 +60,18 @@ public class RecyclerViewActivity extends AppCompatActivity {
         btnAddMovie.setOnClickListener(b -> {
             movieCount++;
             Phim phimMoi = new Phim("P0"+movieCount, "Tên phim mới", "Loại phim mới", "Mô tả ngắn của phim mới ",R.drawable.onepiece);
-            objects.add(movieCount-1,phimMoi);
+
+            // Tìm vị trí cuối cùng của phim trong danh sách
+            int lastMovieIndex = -1;
+            for (int i = 0; i < objects.size(); i++) {
+                if (objects.get(i) instanceof Phim) {
+                    lastMovieIndex = i;
+                }
+            }
+
+            int insertIndex = (lastMovieIndex == -1) ? 0 : lastMovieIndex + 1;
+            objects.add(insertIndex, phimMoi);
+
 
             //chỉ cần cập nhật item vừa tạo
             adapter.notifyItemInserted(movieCount - 1);
