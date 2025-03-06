@@ -73,7 +73,6 @@ public class RecyclerViewActivity extends AppCompatActivity {
             objects.add(insertIndex, phimMoi);
 
 
-            //chỉ cần cập nhật item vừa tạo
             adapter.notifyItemInserted(movieCount - 1);
         });
 
@@ -82,7 +81,6 @@ public class RecyclerViewActivity extends AppCompatActivity {
             DienVien dienVienMoi = new DienVien("Tên diễn viên mới", "Giới tính của diễn viên", "Năm sinh của diễn viên ",R.drawable.padao);
             objects.add(dienVienMoi);
 
-            //chỉ cần cập nhật item vừa tạo
             adapter.notifyItemInserted(objects.size() - 1);
         });
 

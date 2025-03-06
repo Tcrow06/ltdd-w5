@@ -15,7 +15,6 @@ import java.util.List;
 
 public class MonhocAdapterView extends
         BaseAdapter {
-    //khai báo
     private Context context;
     private int layout;
     private List<MonHoc> monHocList;

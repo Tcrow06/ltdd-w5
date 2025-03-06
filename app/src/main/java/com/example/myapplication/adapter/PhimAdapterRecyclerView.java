@@ -63,11 +63,12 @@ public class PhimAdapterRecyclerView extends RecyclerView.Adapter<RecyclerView.V
 
         if (viewType == ITEM_MOVIE) {
             Phim phim = (Phim) object;
-            ((MovieViewHolder) holder).tvCode.setText(phim.getCode());
-            ((MovieViewHolder) holder).tvName.setText(phim.getName());
-            ((MovieViewHolder) holder).tvGenre.setText(phim.getGenre());
-            ((MovieViewHolder) holder).tvShortDescription.setText(phim.getShortDescription());
-            ((MovieViewHolder) holder).tvPic.setImageResource(phim.getPic());
+            MovieViewHolder movieHolder = (MovieViewHolder) holder;
+            movieHolder.tvCode.setText(phim.getCode());
+            movieHolder.tvName.setText(phim.getName());
+            movieHolder.tvGenre.setText(phim.getGenre());
+            movieHolder.tvShortDescription.setText(phim.getShortDescription());
+            movieHolder.tvPic.setImageResource(phim.getPic());
         }else if (viewType == ITEM_ACTOR){
             ActorViewHolder actorHolder = (ActorViewHolder) holder;
             DienVien dv = (DienVien) object;
@@ -76,12 +77,13 @@ public class PhimAdapterRecyclerView extends RecyclerView.Adapter<RecyclerView.V
             actorHolder.tvBird.setText(dv.getBird());
             actorHolder.tvPic.setImageResource(dv.getPic());
         }
+
         //Thiết lập animation cho item
         setAnimation(holder.itemView, position);
 
         //Thiết lập sự kiện animation khi click vào item
         holder.itemView.setOnClickListener( a -> {
-            Animation rotateAnimation = AnimationUtils.loadAnimation(context, R.anim.rotate_y);
+            Animation rotateAnimation = AnimationUtils.loadAnimation(context, R.anim.zom);
             a.startAnimation(rotateAnimation);
         });
 
